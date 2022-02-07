@@ -1,0 +1,11 @@
+FROM tomcat
+RUN apt update && apt install -y \
+default-jdk \
+git \
+maven \
+&& rm -rf /var/lib/apt/lists/* \
+&& mkdir -m777 /home/git \
+&& git clone https://github.com/deepshankaryadav/CyberFRAT-DevSecOps-Training-Sample-Java-App.git /home/git \
+&& cd /home/git \
+&& mvn package \
+&& cp /home/git/target/WebApp.war /usr/local/tomcat/webapps/
