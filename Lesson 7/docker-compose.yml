@@ -1,0 +1,19 @@
+---
+version: "3.7"
+services:
+
+  mvn:
+    build: Build
+    volumes:
+      - Hello:/home/war
+
+  web:
+    image: tomcat:alpine
+    volumes:
+      - Hello:/usr/local/tomcat/webapps
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mvn
+volumes:
+  Hello:
